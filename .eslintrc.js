@@ -2,7 +2,7 @@ module.exports = {
     "extends": "airbnb-base",
     "rules": {
         "semi": ["error", "always"],
-        "quotes": ["error", "single"],
+        "quotes": 'off',
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
         "no-multiple-empty-lines": "off",
         "no-console": 'off',
