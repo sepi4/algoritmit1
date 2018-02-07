@@ -1,4 +1,4 @@
-3.a ja b  
+3) a ja b  
   aakkoset: a, b, c, d, e, f, g, h, i,
 
 Eli tarvitaan 2 pinoa.
@@ -6,6 +6,20 @@ DAGEBFICH
 ----------------
 1. 
 2. 
+poistetut 
+..............
+ABCDEFGHI
+
+
+3) c ja d
+
+DAGEBFICH
+
+
+Eli tarvitaan 1 jono.
+DAGEBFICH
+----------------
+1. 
 poistetut 
 ..............
 ABCDEFGHI
