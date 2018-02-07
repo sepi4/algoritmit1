@@ -1,0 +1,11 @@
+3.a ja b  
+  aakkoset: a, b, c, d, e, f, g, h, i,
+
+Eli tarvitaan 2 pinoa.
+DAGEBFICH
+----------------
+1. 
+2. 
+poistetut 
+..............
+ABCDEFGHI
