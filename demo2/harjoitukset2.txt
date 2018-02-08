@@ -8,7 +8,6 @@ DAGEBFICH
 2. 
 poistetut 
 ..............
-ABCDEFGHI
 
 
 3) c ja d

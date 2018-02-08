@@ -46,11 +46,13 @@ function asetaLuku(arr, koko, luku) {
 }
 
 
-const array2 = [4, 8, 1, 3, 43, -2, 2, -9];
-console.log(asetaLuku(array2, array2.length, 8));
+console.log('----1b-----');
+const alku = [4, 8, 1, 3, 43, -2, 2, -9];
+const loppu = asetaLuku(alku, alku.length, 0);
+console.log('alku:', alku);
+console.log('loppu:', loppu);
 
 // 1c
-
 /*
 pseudo
 laskeNollat(arr, koko) {
@@ -64,6 +66,7 @@ laskeNollat(arr, koko) {
 }
 */
 
+console.log('----1c-----');
 function laskeNollat(arr, koko) {
   if (koko === 0) {
     return 0;
@@ -84,7 +87,7 @@ console.log(laskeNollat(array3, array3.length));
 operate(arr) {
   a = arr.pop
   b = arr.pop
-  return yhdiste(a,b)
+  arr.push(yhdiste(a,b))
 }
 */
 
