@@ -132,4 +132,45 @@ function sink(arr) {
   return newArr;
 }
 
+//4). a
+// kertaluokka O(n)
+function linkedList() {
+  let first = null;
+/*
+...
+*/
 
+  let last = null;
+  this.last = function(list) {
+    if (first === null) { // tyhjä lista
+      return last; // null
+    }
+    let current = first;
+    while (current.next !== null) { // WHILE
+      current = current.next;
+    }
+    last = current;
+    return last;
+  }
+}
+
+//4). b
+function linkedList() {
+/*
+...
+*/
+  this.vaihda = function() {
+    while (current.next !== null) { // WHILE
+      current = current.next;
+    }
+    let last = current;
+    let varasto = null;
+    varasto = first;
+    first = last;
+    last = varasto;
+  }
+}
+
+// 5). a
+// 5). b
+// 5). c
