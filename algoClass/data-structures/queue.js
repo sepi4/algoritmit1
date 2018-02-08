@@ -52,27 +52,63 @@ What's the time complexity?
 
 function Queue(capacity) {
   // implement me...
+  this.capacity = capacity || Infinity;
+  this.storage = {};
+  this.size = 0;
+  this.tail = 0;
+  this.head = 0;
 }
 
 Queue.prototype.enqueue = function(value) {
   // implement me...
+  if (this.capacity <= this.size) {
+    return 'Queue is full';
+  }
+  this.storage[this.size] = value;
+  this.size++;
+  this.tail++;
 };
 // Time complexity:
 
 Queue.prototype.dequeue = function() {
   // implement me...
+  if (this.size <= 0) {
+    return 'queue is empty';
+  }
+  const el = this.storage[this.head];
+  delete this.storage[this.head];
+  this.size--;
+  this.head++;
+  return el;
 };
 // Time complexity:
 
 Queue.prototype.peek = function() {
   // implement me...
+  const el = this.storage[this.head];
+  return el;
 };
 
 Queue.prototype.count = function() {
   // implement me...
+  return this.size;
 };
 // Time complexity:
 
+const kissat = new Queue();
+
+kissat.enqueue('Mikki');
+kissat.enqueue('Mirri');
+kissat.enqueue('Apina');
+console.log(kissat);
+kissat.dequeue();
+kissat.dequeue();
+kissat.dequeue();
+kissat.dequeue();
+console.log(kissat);
+kissat.enqueue('Homo');
+kissat.enqueue('Lesbo');
+console.log(kissat);
 
 
 /*
