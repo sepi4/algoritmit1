@@ -89,6 +89,19 @@ Stack.prototype.count = function() {
 // Time complexity:
 
 
+const kissat = new Stack();
+console.log(kissat);
+kissat.push('Mirri');
+console.log(kissat);
+kissat.push('Hurri');
+console.log(kissat);
+kissat.push('Kili');
+console.log(kissat);
+kissat.pop();
+console.log(kissat);
+console.log('kissat.peek()', kissat.peek());
+
+
 /*
 *** Exercises:
 
@@ -108,14 +121,3 @@ You are given three towers (stacks) and N disks, each of different size. You can
 The disks begin on tower#1. Write a function that will move the disks from tower#1 to tower#3 in such a way that none of the constraints are violated.
  */
 
-const kissat = new Stack();
-console.log(kissat);
-kissat.push('Mirri');
-console.log(kissat);
-kissat.push('Hurri');
-console.log(kissat);
-kissat.push('Kili');
-console.log(kissat);
-kissat.pop();
-console.log(kissat);
-console.log('kissat.peek()', kissat.peek());

@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+
+
 //1. Write a function that loops through the numbers n down to 0. If you haven't done so try using a while loop to do this.
 function loop(n) {
   while(n >= 0) {
@@ -19,43 +32,32 @@ function recLoop(n) {
 
 //5. Write a function 'recursiveMultiplier' that takes two arguments, 'arr and num', and multiplies each arr value into by num and returns an array of the values.
 
-/*
-*******arguments***********
-[1, 2, 3, 4, 5] and 2
-----------NON RECURCIVE----
-let newArr = [];
-for (el in arr) {
-  newArr.push(el * 2);
-}
-return newArr;
-----------RECURCIVE----
-
-*/
-function recursiveMultiplier(arr, num) {
-  if (arr.length === 0) {
-    return arr;
-  }   
-  const last = arr.pop();
-  recursiveMultiplier(arr, num);
-  arr.push(last * num);
-  return arr;
-}
-
-console.log(recursiveMultiplier([1,2,3], 2))
-
 //6. Write a function 'recursiveReverse' that takes an array and uses recursion to return its contents in reverse
-/*
-[1, 2, 3, 4, 5]
-----------
-[5].concat(4).concat(3).concat(2).concat(1)
-*/
+
 function recursiveReverse(arr) {
   if (arr.length > 1) {
-    return recursiveReverse(arr.slice(1)).concat(arr[0]);
-  }   
-  return arr;
+    // console.log(typeof(recursiveReverse(arr.slice(1))))
+    return recursiveReverse(arr.slice(1)).concat(recursiveReverse(arr[0]));
+  } else if (arr.length === 1) {
+    return arr;
+  }
+  return;
 }
+
+
+/*
+'kissa'
+----------
+fun arr
+  return fun(arr[tail]) + arr[head]
+----------
+*/
 
 console.log(recursiveReverse('kissa'));
 console.log(recursiveReverse([1, 2, 3, 4, 5]));
-console.log(recursiveReverse([]));
+
+    
+  </script>
+  
+</body>
+</html>
