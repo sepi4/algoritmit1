@@ -90,6 +90,7 @@ Stack.prototype.count = function() {
 
 
 const kissat = new Stack();
+console.log('kissat.peek()', kissat.peek());
 console.log(kissat);
 kissat.push('Mirri');
 console.log(kissat);
@@ -106,7 +107,61 @@ console.log('kissat.peek()', kissat.peek());
 *** Exercises:
 
 1. Implement a stack with a min method which returns the minimum element currently in the stack. This method should have O(1) time complexity. Make sure your implementation handles duplicates.
+*/
 
+function MinStack(capacity) {
+  this._capacity = capacity || Infinity;  
+  this._size = 0;
+  this._storage = {};
+  this._minStack = new Stack();
+}
+
+MinStack.prototype.peek = function() {
+  return this._storage[this.size - 1];
+};
+
+MinStack.prototype.push = function(value) {
+  if (this._capacity <= this._size) {
+    return 'Can\'t add over capacity!';
+  } 
+  this._storage[this._size] = value;
+  if (this._minStack.peek() < value) {
+    this._minStack.push(this._minStack.peek());
+  } else {
+    this._minStack.push(value);
+  }
+  this._size++;
+};
+
+MinStack.prototype.pop = function() {
+  this._minStack.pop();
+  this._size--;
+  delete this._storage[this._size];
+};
+
+MinStack.prototype.count = function() {
+  return this._size;
+};
+
+
+console.log('---------MINSTACK----------');
+const koirat = new MinStack();
+koirat.push(10);
+console.log(koirat)
+koirat.push(15);
+console.log(koirat)
+koirat.push(5);
+console.log(koirat)
+koirat.push(1);
+console.log(koirat)
+koirat.push(5);
+console.log(koirat)
+koirat.pop()
+koirat.pop()
+console.log(koirat)
+
+
+/*
 2. Sort a stack so that its elements are in ascending order.
 
 3. Given a string, determine if the parenthesis in the string are balanced.
