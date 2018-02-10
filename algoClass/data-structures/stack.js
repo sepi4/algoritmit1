@@ -50,43 +50,74 @@ What's the time complexity?
 
  */
 
-function Stack(capacity) {
-  // implement me...
-  this.capacity = capacity || Infinity;
-  this.size = 0;
-  this.storage = {};
+// function Stack(capacity) {
+//   // implement me...
+//   this.capacity = capacity || Infinity;
+//   this.size = 0;
+//   this.storage = {};
+// }
+
+// Stack.prototype.push = function(value) {
+//   // implement me...
+//   if (this.capacity > this.size) {
+//     this.storage[this.size] = value;
+//     this.size++;
+//   }
+//   else {
+//     return 'over max';
+//   }
+// };
+// // Time complexity:
+
+// Stack.prototype.pop = function() {
+//   // implement me...
+//   this.size--;
+//   delete this.storage[this.size];
+// };
+// // Time complexity:
+
+// Stack.prototype.peek = function() {
+//   // implement me...
+//   return this.storage[this.size - 1];
+// };
+// // Time complexity:
+
+// Stack.prototype.count = function() {
+//   // implement me...
+//   return this.size;
+// };
+// // Time complexity:
+
+class Stack {
+  constructor(capacity) {
+    this.capacity = capacity || Infinity;
+    this.size = 0;
+    this.storage = {};
+  }
+
+  push(value) {
+    if (this.capacity > this.size) {
+      this.storage[this.size] = value;
+      this.size++;
+    }
+    else {
+      return 'over max';
+    }
+  };
+
+  pop() {
+    this.size--;
+    delete this.storage[this.size];
+  };
+
+  peek() {
+    return this.storage[this.size - 1];
+  };
+
+  count() {
+    return this.size;
+  };
 }
-
-Stack.prototype.push = function(value) {
-  // implement me...
-  if (this.capacity > this.size) {
-    this.storage[this.size] = value;
-    this.size++;
-  }
-  else {
-    return 'over max';
-  }
-};
-// Time complexity:
-
-Stack.prototype.pop = function() {
-  // implement me...
-  this.size--;
-  delete this.storage[this.size];
-};
-// Time complexity:
-
-Stack.prototype.peek = function() {
-  // implement me...
-  return this.storage[this.size - 1];
-};
-// Time complexity:
-
-Stack.prototype.count = function() {
-  // implement me...
-  return this.size;
-};
-// Time complexity:
 
 
 const kissat = new Stack();
