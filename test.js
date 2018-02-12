@@ -1,50 +1,49 @@
-// function bubblesort(arr) {
-//   const n = arr.length;
-//   let store;
-//   for (let k = 0; k < n-1-k; k++) {
-//     for (let i = 0; i < n-1; i++) {
-//       if (arr[i] > arr[i+1]) {
-//         store = arr[i+1];
-//         arr[i+1] = arr[i];
-//         arr[i] = store;
-//       }
-//     }    
-//   }
-// }
 
-// let arr = [5,2,6,8,1,3,1];
-// console.log(arr);
-// bubblesort(arr);
-// console.log('sorted arr',arr);
+function swap(arr, i1, i2) {
+  const temp = arr[i1];
+  arr[i1] = arr[i2];
+  arr[i2] = temp; 
+  return arr;
+}
 
-function merge(L,R) {
-  let outArr = [], rIndex = 0, lIndex = 0;
-  while (outArr.length < (L.length + R.length)) {
-    if (lIndex === L.length) {
-      outArr.push(R[rIndex++]);
-    } else if (rIndex === R.length) {
-      outArr.push(L[lIndex++]);
-    } else if (L[lIndex] > R[rIndex]) {
-      outArr.push(R[rIndex++]);
+function partition(arr, first, last) {
+  let pivotLoc = first;
+  let pivot = arr[last];
+  let whereNow = last;
+
+  while (pivotLoc !== whereNow) {
+    if (pivot > arr[pivotLoc]) {
+      pivotLoc++;
     } else {
-      outArr.push(L[lIndex++]);
+      swap(arr, pivotLoc, whereNow);
+      whereNow--;
+      swap(arr, pivotLoc, whereNow);
     }
   }
-  return outArr;
+  return pivotLoc;
 }
 
-function mergeSort(arr) {
-  const l = arr.length;
-  if (l < 2) {
-    return arr;
+function quickSort (arr, first, last) {
+  if (first === undefined) {
+    first = 0;
   }
-  const L = arr.slice(0, l/2);
-  const R = arr.slice(l/2);
-  const Lsorted = mergeSort(L);
-  const Rsorted = mergeSort(R);
-  return merge(Lsorted, Rsorted);
+
+  if (last === undefined) {
+    last = arr.length - 1;
+  }
+
+  if (first < last) { // end recursion condition
+    const p = partition(arr, first, last);
+    quickSort(arr, first, p-1);
+    quickSort(arr, p+1, last);
+  }
+  return arr;
 }
 
-let list = [8,1,4,555,32,1,22,33,9,2,9,8,65,43,21,6,6,54,3,2,1];
-list = mergeSort(list);
-console.log(list);
+let list = [4,8,1,8,9,3,1,2];
+// let list = [];
+console.log(list)
+// partition(list, 0, list.length-1);
+// console.log(list)
+quickSort(list)
+console.log(list)

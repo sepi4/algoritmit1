@@ -9,7 +9,11 @@ It has a partitioning step, in which you pick an element (called a pivot) and pa
 
 *** Exercises
 
-- Write a partition helper function. For choice of pivot, for a basic implementation, we recommend choosing either the first or last element in the subarray. If you need hints, look up the Lumoto partiton scheme. Test this out before moving forward!
+- Write a partition helper function. For choice of pivot, 
+  for a basic implementation, we recommend choosing either 
+  the first or last element in the subarray. If you need 
+  hints, look up the Lumoto partiton scheme. Test this out 
+  before moving forward!
 - Implement quicksort
 - Identify time complexity
 
