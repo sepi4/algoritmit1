@@ -82,66 +82,181 @@ Reimplement stack and queue data structures using linked lists.
 
 function Node(value) {
   this.next = null;
+  this.prev = null;
   this.value = value;
 }
 
 function LinkedList(headValue) {
-  if (headValue === undefined) console.log('Must provide value for first node');
+  if (headValue === undefined) {
+    console.log('Must provide value for first node');
+  }
   this.head = new Node(headValue);
+  this.tail = this.head;
 }
 
 LinkedList.prototype.forEach = function(callback) {
   // implement me...
+  let node = this.head;
+  while (node) {
+    callback(node);
+    node = node.next;
+  }
 };
 // Time complexity:
 
 LinkedList.prototype.print = function() {
   // implement me...
+  let arr = [];
+  let node = this.head;
+  while (node) {
+    arr.push(node.value);
+    node = node.next;
+  }
+  return arr;
 };
 // Time complexity:
 
 LinkedList.prototype.insertAfter = function(node, value) {
   // implement me...
+  const newNode = new Node(value);
+  newNode.next = node.next;
+  node.next = newNode;
+  newNode.prev = node;
+  if (this.tail === node) {
+    this.tail = newNode;
+  }
 };
 // Time complexity:
 
+
 LinkedList.prototype.removeAfter = function(node) {
   // implement me...
+  const nextNode = node.next;
+  if (!nextNode)  { 
+    return; 
+  }
+  newNextNode = nextNode.next;
+  node.next = newNextNode;
+  newNextNode.prev = node;
 };
 // Time complexity:
 
 LinkedList.prototype.insertHead = function(value) {
   // implement me...
+  const newHead = new Node(value);
+  const oldHead = this.head;
+  newHead.next = oldHead;
+  oldHead.prev = newHead;
+  this.head = newHead;
 };
 // Time complexity:
 
+
 LinkedList.prototype.removeHead = function() {
   // implement me...
+  this.head = this.head.next;
+  this.head.prev = null;
 }
 
 LinkedList.prototype.findNode = function(value) {
   // implement me...
+  let start = this.head;
+  while (start) {
+    if (start.value === value) {
+      return start;
+    }
+    start = start.next;
+  }
+  return 'Value not found in linkedList.';
 };
 // Time complexity:
 
 LinkedList.prototype.appendToTail = function(value) {
   // implement me...
+  const newTail = new Node(value);
+  const oldTail = this.tail;
+  oldTail.next = newTail;
+  newTail.next = null;
+  newTail.prev = oldTail;
+  this.tail = newTail;
 };
 // Time complexity:
 
 
+
+
+
+
+
 // PART 2:
+
 
 LinkedList.prototype.insertBefore = function(node, value) {
   // implement me...
+  const newNode = new Node(value);
+  const oldPrev = node.prev;
+  oldPrev.next = newNode;
+  newNode.next = node;
+  newNode.prev = oldPrev;
+  node.prev = newNode;
 };
 // Time complexity:
 
 LinkedList.prototype.removeBefore = function(node) {
   // implement me...
+  const oldPrev = node.prev;
+  const newPrev = oldPrev.prev;
+  newPrev.next = node;
+  node.prev = newPrev;
+  
 };
 // Time complexity:
 
+let list = new LinkedList('kissa');
+
+
+list.appendToTail('kana');
+list.appendToTail('apina');
+list.appendToTail(88);
+list.appendToTail('koira');
+list.appendToTail('sika');
+// console.log(list);
+
+console.log(list.print());
+
+console.log('removeAfter');
+list.removeAfter(list.findNode('kana'));
+console.log(list.print());
+
+console.log('insertAfter');;
+list.insertAfter(list.findNode('koira'), 'lehmä');
+console.log(list.print())
+
+list.insertHead('sammakko');
+console.log('insertHead');;
+console.log(list.print())
+
+console.log('removeHead');;
+list.removeHead();
+console.log(list.print())
+
+console.log('removeAfter');
+list.removeAfter(list.findNode('kana'));
+console.log(list.print())
+
+console.log('insertBefore');
+list.insertBefore(list.findNode('lehmä'), 'kirahvi');
+console.log(list.print())
+
+console.log('removeBefore');
+list.removeBefore(list.findNode('koira'));
+console.log(list.print())
+console.log(list)
+
+// function consoleLog(node) {
+//   console.log(node);
+// }
+// list.forEach(consoleLog);
 
 
 /*
@@ -168,3 +283,5 @@ LinkedList.prototype.removeBefore = function(node) {
 1 1 5 6   (1 -> 1 -> 5 -> 6)
 
  */
+
+
