@@ -125,6 +125,7 @@ LinkedList.prototype.insertAfter = function(node, value) {
   if (this.tail === node) {
     this.tail = newNode;
   }
+  return newNode;
 };
 // Time complexity:
 
@@ -138,6 +139,7 @@ LinkedList.prototype.removeAfter = function(node) {
   newNextNode = nextNode.next;
   node.next = newNextNode;
   newNextNode.prev = node;
+  return nextNode;
 };
 // Time complexity:
 
@@ -148,24 +150,27 @@ LinkedList.prototype.insertHead = function(value) {
   newHead.next = oldHead;
   oldHead.prev = newHead;
   this.head = newHead;
+  return newHead;
 };
 // Time complexity:
 
 
 LinkedList.prototype.removeHead = function() {
   // implement me...
+  const oldHead = this.head;
   this.head = this.head.next;
   this.head.prev = null;
+  return oldHead;
 }
 
 LinkedList.prototype.findNode = function(value) {
   // implement me...
-  let start = this.head;
-  while (start) {
-    if (start.value === value) {
-      return start;
+  let node = this.head;
+  while (node) {
+    if (node.value === value) {
+      return node;
     }
-    start = start.next;
+    node = node.next;
   }
   return 'Value not found in linkedList.';
 };
@@ -179,6 +184,7 @@ LinkedList.prototype.appendToTail = function(value) {
   newTail.next = null;
   newTail.prev = oldTail;
   this.tail = newTail;
+  return newTail;
 };
 // Time complexity:
 
@@ -199,6 +205,7 @@ LinkedList.prototype.insertBefore = function(node, value) {
   newNode.next = node;
   newNode.prev = oldPrev;
   node.prev = newNode;
+  return newNode;
 };
 // Time complexity:
 
@@ -208,7 +215,7 @@ LinkedList.prototype.removeBefore = function(node) {
   const newPrev = oldPrev.prev;
   newPrev.next = node;
   node.prev = newPrev;
-  
+  return oldPrev; 
 };
 // Time complexity:
 
@@ -249,9 +256,9 @@ list.insertBefore(list.findNode('lehmä'), 'kirahvi');
 console.log(list.print())
 
 console.log('removeBefore');
-list.removeBefore(list.findNode('koira'));
+console.log(list.removeBefore(list.findNode('koira')))
 console.log(list.print())
-console.log(list)
+// console.log(list)
 
 // function consoleLog(node) {
 //   console.log(node);
