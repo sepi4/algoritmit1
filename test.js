@@ -22,36 +22,36 @@ Solmu.prototype.insert = function (key) {
   return this;
 };
 
-Solmu.prototype.esi = function(callback) {
+Solmu.prototype.preorder = function(callback) {
   if (this.key) {
     callback(this.key);
   }
   if (this.left) {
-    this.left.esi(callback);
+    this.left.preorder(callback);
   }
   if (this.right) {
-    this.right.esi(callback);
+    this.right.preorder(callback);
   }
 };
 
-Solmu.prototype.sisa = function(callback) {
+Solmu.prototype.inorder = function(callback) {
   if (this.left) {
-    this.left.esi(callback);
+    this.left.inorder(callback);
   }
   if (this.key) {
     callback(this.key);
   }
   if (this.right) {
-    this.right.esi(callback);
+    this.right.inorder(callback);
   }
 };
 
-Solmu.prototype.jalki = function(callback) {
+Solmu.prototype.postorder = function(callback) {
   if (this.left) {
-    this.left.esi(callback);
+    this.left.postorder(callback);
   }
   if (this.right) {
-    this.right.esi(callback);
+    this.right.postorder(callback);
   }
   if (this.key) {
     callback(this.key);
@@ -62,30 +62,34 @@ function tulosta (key) {
   console.log(key);
 }
 
-let puu = new Solmu(6);
-puu.insert(2);
+let puu = new Solmu(8);
 puu.insert(4);
+puu.insert(12);
+puu.insert(2);
+puu.insert(6);
+puu.insert(10);
+puu.insert(14);
+puu.insert(1);
 puu.insert(3);
 puu.insert(5);
-puu.insert(0);
-puu.insert(1);
-puu.insert(8);
 puu.insert(7);
 puu.insert(9);
-puu.insert(10);
+puu.insert(11);
+puu.insert(13);
+puu.insert(15);
 
 
 
 
 
 console.log('esijarjestyksessa tulostus:')
-puu.esi(tulosta);
+puu.preorder(tulosta);
 console.log('-----------------');
 
 console.log('sisajarjestyksessa tulostus:')
-puu.sisa(tulosta);
+puu.inorder(tulosta);
 console.log('-----------------');
 
 console.log('jalkijarjestyksessa tulostus:')
-puu.jalki(tulosta);
+puu.postorder(tulosta);
 console.log('-----------------');
