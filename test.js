@@ -112,45 +112,50 @@ function tulosta (key) {
 }
 
 // remove node ------------
-var removeNode = function (node, key) {
-  if (node === null) { //{2}
-    return null;
-  }
-  if (key < node.key) { //{3}
-    node.left = removeNode(node.left, key); //{4}
-    return node; //{5}
-  } else if (key > node.key) { //{6}
-    node.right = removeNode(node.right, key); //{7}
-    return node; //{8}
-  } else { // key is equal to node.key
-    //case 1 - a leaf node
-    if (node.left === null && node.right === null) { //{9}
-      node = null; //{10}
-      return node; //{11}
-    }
-    //case 2 - a node with only 1 child
-    if (node.left === null) { //{12}
-      node = node.right; //{13}
-      return node; //{14}
-    } else if (node.right === null) { //{15}
-      node = node.left; //{16}
-      return node; //{17}
-    }
-    //case 3 - a node with 2 children
-    var aux = findMinNode(node.right); //{18}
-    node.key = aux.key; //{19}
-    node.right = removeNode(node.right, aux.key); //{20}
-    return node; //{21}
-  }
-};
 
-var findMinNode = function (node) {
-  while (node && node.left !== null) {
-    node = node.left;
+// hakutietue h, osoitin p ja sen edeltaja q
+// kandidaattisolmu c ja sen edeltaja cp
+
+
+const poista = function (node, key) {
+  if (node === null) 
+    return node;
+  if (key < node.key) {
+    node.left = poista(node.left, key);
+    return node; // paivittaa isanta solun
+  } else if (key > node.key) {
+    node.right = poista(node.right, key);
+    return node; // paivittaa isanta solun
+  } else { // ===
+    // viimeisen solmun poisto 
+    if (node.right === null && node.left === null) {
+      node = null;
+      return node; // paivittaa isanta solun
+    }
+
+    // yhden lapsen solmun poisto
+    if (node.right === null) {
+      node = node.left;
+      return node;
+    } 
+    if (node.left === null) {
+      node = node.right;
+      return node;
+    }
+
+    // kahden lapsen solmun poisto
+    function maxNode(node) {
+      while (node && node.right) {
+        node = node.right;
+      }
+      return node;
+    }
+    node.key = maxNode(node.left).key;
+    node.left = poista(node.left, node.key);
+    return node;
   }
-  return node;
+
 };
-// -----------------
 
 let puu = new Solmu(8);
 puu.insert(4)
@@ -191,7 +196,13 @@ console.log('-----------------');
 
 
 console.log(puu);
-// removeNode(puu, 8);
+poista(puu, 4)
+console.log(puu);
+// poista(puu, 1)
+// console.log(puu);
+// poista(puu, 2)
+// console.log(puu);
+
 // console.log(puu);
 // removeNode(puu, 9);
 // console.log(puu);
