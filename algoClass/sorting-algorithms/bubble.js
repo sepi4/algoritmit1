@@ -21,20 +21,36 @@ Variants:
 */
 
 function bubblesort(arr) {
-  const n = arr.length;
-  let store;
-  for (let k = 0; k < n-1-k; k++) {
-    for (let i = 0; i < n-1; i++) {
-      if (arr[i] > arr[i+1]) {
-        store = arr[i+1];
-        arr[i+1] = arr[i];
-        arr[i] = store;
+  let swapped = true;
+  while(swapped) {
+    swapped = false;
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i - 1] > arr[i]) {
+        const temp = arr[i - 1];
+        arr[i - 1] = arr[i];
+        arr[i] = temp;
+        swapped = true;
       }
-    }    
+    }
   }
 }
 
-let arr = [5,2,6,8,1,3,1];
-console.log(arr);
+function randomArr (length, min, max) {
+  let arr = [];
+  for (let i = 0; i < length; i++) {
+    const num = Math.floor(Math.random() * (max - min + 1) + min);
+    arr.push(num);
+  }
+  return arr;
+}
+
+let arr = randomArr(15, 0, 10);
+console.log('Kuplamenetelmä:');
+console.log('-------------------');
+console.log('Taulukko alussa:', arr);
 bubblesort(arr);
-console.log('sorted arr',arr);
+console.log('Taulukko lopussa:', arr);
+
+
+
+console.log();
