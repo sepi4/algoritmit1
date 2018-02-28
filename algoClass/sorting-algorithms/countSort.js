@@ -26,20 +26,23 @@ function countingSort (arr) {
   const max = maxFromArr(t);
 
   for (let i = 0; i <= max; i++) {
-    u.push(0);
-  }
-  for (let j = 0; j < t.length; j++) {
-    u[t[j]]++;
+    u[i] = 0;
   }
 
-  for (let s = 1; s < u.length; s++) {
-    u[s] = u[s] + u[s-1];
+  for (let i = 0; i < t.length; i++) {
+    u[t[i]]++;
+  }
+
+  for (let i = 0; i < u.length; i++) {
+    if (u[i-1]) {
+      u[i] = u[i] + u[i-1];
+    }
   }
 
   // for (let p = t.length-1; p >= 1; p--) {
-  for (let p = 0; p < t.length; p++) {
-    s[u[t[p]]-1] = t[p];
-    u[t[p]]--;
+  for (let i = 0; i < t.length; i++) {
+    s[u[t[i]]-1] = t[i];
+    u[t[i]]--;
   }
 
   console.log(t);
@@ -47,4 +50,4 @@ function countingSort (arr) {
   console.log(s);
 }
 
-countingSort([0,7,3,8,2,3,9]);
+countingSort([7,3,8,0,8,2,3,9,9,9]);

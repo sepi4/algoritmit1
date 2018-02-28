@@ -28,12 +28,15 @@ function countingSort (arr) {
   for (let i = 0; i <= max; i++) {
     u[i] = 0;
   }
+
   for (let i = 0; i < t.length; i++) {
     u[t[i]]++;
   }
 
-  for (let i = 1; i < u.length; i++) {
-    u[i] = u[i] + u[i-1];
+  for (let i = 0; i < u.length; i++) {
+    if (u[i-1]) {
+      u[i] = u[i] + u[i-1];
+    }
   }
 
   // for (let p = t.length-1; p >= 1; p--) {
@@ -47,4 +50,4 @@ function countingSort (arr) {
   console.log(s);
 }
 
-countingSort([0,7,3,8,8,2,3,9,9,9]);
+countingSort([7,3,8,0,8,2,3,9,9,9]);
