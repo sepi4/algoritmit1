@@ -1,4 +1,4 @@
-function kap(arvot, painot, n, W) {
+function kap(arvot, painot, nimet, n, W) {
   let s = [];
   for (let r = 0; r <= n; r++) {
     s[r] = [];
@@ -15,22 +15,18 @@ function kap(arvot, painot, n, W) {
     for (let c = 1; c <= W; c++) {
       if (painot[r] > c)
         s[r][c] = s[r-1][c];
-      else {
-        s[r][c] = Math.max(
-          s[r-1][c], 
-          arvot[r] + s[r-1][c-painot[r]]
-        );
-      }
+      else
+        s[r][c] = Math.max(s[r-1][c], arvot[r] + s[r-1][c-painot[r]]);
     }
   }
-  // console.log(s)
+  console.log(s)
 
   let optimalArrayItems = [];
   let item = n;
   let weight = W;
   while (item > 0) {
     if (s[item][weight] != s[item-1][weight]) {
-      optimalArrayItems.push([arvot[item], painot[item]]);
+      optimalArrayItems.push(nimet[item]);
       weight -= painot[item];
     }
     item--; 
@@ -39,18 +35,20 @@ function kap(arvot, painot, n, W) {
   return [s[n][W], optimalArrayItems];
 }
 
-let maxPaino = 5;
-let tavaraMaara = 4;
-let arvot = [0,100,20,60,40];
-let painot = [0,3,2,4,1];
+let maxPaino = 23;
+let tavaraMaara = 10;
+let arvot = [0,7,3,1,5,9,3,3,1,10,1];
+let painot = [0,4,9,3,7,6,6,2,7,5,9];
+let nimet = [0,'a','b','c','d','e','f','g','h','i','j'];
 
-let returning = kap(arvot, painot, tavaraMaara, maxPaino);
+let returning = kap(arvot, painot, nimet, tavaraMaara, maxPaino);
 console.log(`
 Repun maksimi kapasiteetti: ${maxPaino}
 Olemassa olevia tavaroita: ${tavaraMaara}
 Arvot taulukko: ${arvot}
 Painot taulukko: ${painot}
+Nimet taulukko: ${nimet}
 -----
 Optimaalisen pakkauksen arvo: ${returning[0]}
-Lisältämät tavarat [arvo, paino]: ${returning[1]}
+Sisältämät tavarat: ${returning[1]}
 `);
