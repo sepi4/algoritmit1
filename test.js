@@ -52,3 +52,26 @@ Nimet taulukko: ${nimet}
 Optimaalisen pakkauksen arvo: ${returning[0]}
 Sisältämät tavarat: ${returning[1]}
 `);
+
+
+console.log('-----QUICKSORT------');
+function quickSort(t) {
+  if(t.length < 2)
+    return t;
+  let smallerArr = [];
+  let biggerArr = [];
+  let pivot = t[t.length - 1];
+  for (let i = 0; i < t.length-1; i++)
+    if(t[i] > pivot)
+      biggerArr.push(t[i]);
+    else
+      smallerArr.push(t[i]);
+  return [].concat(quickSort(smallerArr), pivot, quickSort(biggerArr));
+}
+
+// let arr = [2,5,6,1,3];
+// let arr = [4,2,5,6,1,3];
+let arr = [8,0,1,4,2,5,6,101,3];
+console.log(arr);
+console.log(quickSort(arr));
+console.log(arr);
